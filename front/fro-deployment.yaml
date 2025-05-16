@@ -8,10 +8,9 @@ spec:
     app: front-app
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
-      nodePort: 30517
-
+      port: 80             # Port du service
+      targetPort: 80       # Port utilisé dans le conteneur
+      nodePort: 30517        # Port accessible via minikube (facultatif)
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -29,7 +28,7 @@ spec:
     spec:
       containers:
       - name: frontend-container
-        image: angevirus/frontend:v5
+        image: angevirus/frontend:vf
         ports:
         - containerPort: 80
         imagePullPolicy: Always
@@ -40,4 +39,3 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
-
